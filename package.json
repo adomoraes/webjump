@@ -1,14 +1,17 @@
 {
-	"name": "assessment-frontend",
+	"name": "webjump",
 	"private": true,
-	"version": "0.0.0",
+	"version": "0.1.0",
+	"homepage": "https://adomoraes.github.io/webjump/",
 	"type": "module",
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
 		"lint": "eslint .",
 		"preview": "vite preview",
-		"start:api": "json-server --watch db/db.json --port 8888"
+		"start:api": "json-server --watch db/db.json --port 8888",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d dist"
 	},
 	"dependencies": {
 		"axios": "^1.7.3",
