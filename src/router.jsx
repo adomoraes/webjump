@@ -7,8 +7,8 @@ import Contact from "./pages/Contact"
 
 const router = createBrowserRouter([
 	{
-		path: "/",
-		element: <RootLayout basename='/webjump/' />,
+		path: "/webjump/",
+		element: <RootLayout />,
 		children: [
 			{
 				index: true,
