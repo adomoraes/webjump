@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react"
 import { Link } from "react-router-dom"
-import axios from "axios"
+import { supabase } from "../lib/supabase"
 import PropTypes from "prop-types"
 
 const Filters = ({ setSelectedFilters }) => {
@@ -34,12 +34,15 @@ const Filters = ({ setSelectedFilters }) => {
 
 	useEffect(() => {
 		const fetchCategories = async () => {
+			setLoading(true)
 			try {
-				const response = await axios.get("http://localhost:8888/categories")
-				setCategories(response.data)
+				const { data, error } = await supabase.from("categories").select("*")
+
+				if (error) throw error
+				setCategories(data || [])
 			} catch (error) {
 				setError("Erro ao buscar categorias.")
-				console.error("Erro ao buscar categorias:", error)
+				console.error("Erro ao buscar categorias:", error.message)
 			} finally {
 				setLoading(false)
 			}
@@ -48,9 +51,9 @@ const Filters = ({ setSelectedFilters }) => {
 		fetchCategories()
 	}, [])
 
-	const sortedCategories = categories.slice().sort((a, b) => {
-		return a.name.localeCompare(b.name)
-	})
+	const sortedCategories = categories
+		? categories.slice().sort((a, b) => a.name.localeCompare(b.name))
+		: []
 
 	const shouldShowClearButton = filters.color || filters.gender
 
@@ -67,20 +70,24 @@ const Filters = ({ setSelectedFilters }) => {
 				<div className='mb-4'>
 					<h3 className='text-lg m-2 font-semibold'>Categorias</h3>
 					<ul className='h-full'>
-						{sortedCategories.map((category) => (
-							<li
-								key={category.id}
-								className='hover:bg-gray-200 h-full border-b'>
-								<Link
-									to={`/products/category/${category.id}`}
-									className='block p-2 w-full h-full'>
-									{category.name}
-								</Link>
-							</li>
-						))}
+						{sortedCategories.length > 0 ? (
+							sortedCategories.map((category) => (
+								<li
+									key={category.id}
+									className='hover:bg-gray-200 h-full border-b'>
+									<Link
+										to={`/products/category/${category.id}`}
+										className='block p-2 w-full h-full'>
+										{category.name}
+									</Link>
+								</li>
+							))
+						) : (
+							<li>Nenhuma categoria disponível</li>
+						)}
 						<li className='hover:bg-gray-200 h-full border-b'>
 							<Link to={`/products/`} className='block p-2 w-full h-full'>
-								{`Todas as categorias`}
+								Todas as categorias
 							</Link>
 						</li>
 					</ul>

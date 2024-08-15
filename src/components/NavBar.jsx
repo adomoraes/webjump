@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import axios from "axios"
 import { Link } from "react-router-dom"
 import Contact from "../pages/Contact"
+import { supabase } from "../lib/supabase"
 
 const NavBar = () => {
 	const [categories, setCategories] = useState([])
@@ -11,10 +12,12 @@ const NavBar = () => {
 	useEffect(() => {
 		const fetchCategories = async () => {
 			try {
-				const response = await axios.get("http://localhost:8888/categories")
-				setCategories(response.data)
+				const { data, error } = await supabase.from("categories").select("*")
+
+				if (error) throw error
+				setCategories(data)
 			} catch (error) {
-				console.error("Erro ao buscar categorias:", error)
+				console.error("Erro ao buscar categorias:", error.message)
 			}
 		}
 

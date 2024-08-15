@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react"
 import { useParams, useOutletContext } from "react-router-dom"
-import axios from "axios"
+import { supabase } from "../lib/supabase"
 
 const fetchProductsAndCategories = async () => {
 	try {
 		const [productsResponse, categoriesResponse] = await Promise.all([
-			axios.get("http://localhost:8888/products"),
-			axios.get("http://localhost:8888/categories"),
+			supabase.from("products").select("*"),
+			supabase.from("categories").select("*"),
 		])
+
+		if (productsResponse.error) throw productsResponse.error
+		if (categoriesResponse.error) throw categoriesResponse.error
+
 		return {
 			products: productsResponse.data,
 			categories: categoriesResponse.data,
@@ -23,19 +27,19 @@ const filterProducts = (products, categoryId, filters) => {
 
 	if (categoryId) {
 		filteredProducts = filteredProducts.filter(
-			(product) => product.categoryId.toString() === categoryId
+			(product) => product.categoryId?.toString() === categoryId
 		)
 	}
 
 	if (filters.color) {
 		filteredProducts = filteredProducts.filter((product) =>
-			product.filter.some((filter) => filter.color === filters.color)
+			product.filter?.some((filter) => filter.color === filters.color)
 		)
 	}
 
 	if (filters.gender) {
 		filteredProducts = filteredProducts.filter((product) =>
-			product.filter.some((filter) => filter.gender === filters.gender)
+			product.filter?.some((filter) => filter.gender === filters.gender)
 		)
 	}
 
@@ -43,7 +47,7 @@ const filterProducts = (products, categoryId, filters) => {
 }
 
 export default function Products() {
-	const { selectedFilters, setSelectedFilters } = useOutletContext()
+	const { selectedFilters } = useOutletContext()
 	const { categoryId } = useParams()
 	const [products, setProducts] = useState([])
 	const [categories, setCategories] = useState([])
@@ -64,7 +68,8 @@ export default function Products() {
 				)
 				setProducts(filteredProducts)
 			} catch (error) {
-				// Trata o erro se necessário
+				console.error("Erro ao carregar dados:", error)
+				// Adicione qualquer tratamento de erro que você deseja
 			} finally {
 				setLoading(false)
 			}
