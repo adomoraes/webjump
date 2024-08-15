@@ -86,7 +86,7 @@ const Filters = ({ setSelectedFilters }) => {
 							<li>Nenhuma categoria disponível</li>
 						)}
 						<li className='hover:bg-gray-200 h-full border-b'>
-							<Link to={`/products/`} className='block p-2 w-full h-full'>
+							<Link to={`./products/`} className='block p-2 w-full h-full'>
 								Todas as categorias
 							</Link>
 						</li>
