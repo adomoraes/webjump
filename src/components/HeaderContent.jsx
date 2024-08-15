@@ -6,7 +6,7 @@ const HeaderContent = () => {
 			<div className='max-w-[1440px] mx-auto flex flex-col lg:flex-row items-center lg:items-stretch h-full'>
 				<div className='w-full lg:w-1/2 flex-shrink-0 mb-4 lg:mb-0'>
 					<img
-						src='./media/logo.png'
+						src='/media/logo.png'
 						alt='Logo'
 						className='h-12 lg:h-16 mx-auto lg:mx-0'
 					/>
