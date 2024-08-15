@@ -99,7 +99,7 @@ export default function Products() {
 							<li key={product.id} className='bg-white p-4'>
 								<div className='aspect-w-1 aspect-h-1 w-[210px] h-[210px] mx-auto border overflow-hidden flex items-center justify-center p-2'>
 									<img
-										src={`./${product.image}`}
+										src={`./media/${product.image}`}
 										alt={product.name}
 										className='product-image object-contain max-w-full max-h-full'
 									/>
