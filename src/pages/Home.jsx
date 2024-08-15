@@ -8,7 +8,7 @@ export default function Home() {
 	const text = "Clique no botão abaixo para ver nosso catálogo completo."
 
 	const handleClick = () => {
-		navigate("/products")
+		navigate("./products")
 	}
 	return (
 		<section>
