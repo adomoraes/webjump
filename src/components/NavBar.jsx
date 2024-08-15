@@ -61,7 +61,7 @@ const NavBar = () => {
 
 				<ul className='hidden md:flex md:items-center lg:items-start font-semibold uppercase text-sm h-full'>
 					<li className='mr-4 flex items-center hover:bg-red-800 h-full'>
-						<Link to={`/`} className='hover:text-gray-200 px-4 p-1 md:p-3'>
+						<Link to={`./`} className='hover:text-gray-200 px-4 p-1 md:p-3'>
 							Página Inicial
 						</Link>
 					</li>
