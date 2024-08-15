@@ -76,7 +76,7 @@ const Filters = ({ setSelectedFilters }) => {
 									key={category.id}
 									className='hover:bg-gray-200 h-full border-b'>
 									<Link
-										to={`/products/category/${category.id}`}
+										to={`./products/category/${category.id}`}
 										className='block p-2 w-full h-full'>
 										{category.name}
 									</Link>
