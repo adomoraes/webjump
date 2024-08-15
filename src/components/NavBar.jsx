@@ -70,7 +70,7 @@ const NavBar = () => {
 							key={category.id}
 							className='mr-4 flex items-center hover:bg-red-800 h-full'>
 							<Link
-								to={`/products/category/${category.id}`}
+								to={`./products/category/${category.id}`}
 								className='hover:text-gray-200 px-4 p-1 md:p-3'>
 								{category.name}
 							</Link>
