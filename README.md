@@ -28,6 +28,9 @@ assessment-frontend/
 │   │   ├── Layout.jsx            # Estrutura de layout root dos componentes
 │   │   └── Products.jsx          # Lista de produtos
 │   │
+│   ├── lib/                      # Lib
+│   │   └── supabase.js           # Conexão Supabase API
+│   │
 │   ├── App.jsx                   # Componente raiz da aplicação
 │   ├── main.jsx                  # Ponto de entrada do React
 │   ├── router.js                 # Definição das rotas da aplicação
@@ -52,46 +55,19 @@ assessment-frontend/
 ### Clone o repositório:
 
 ```
-git clone https://orozimbo1982@bitbucket.org/orozimbo1982/assessment-frontend.git
+git clone https://github.com/adomoraes/webjump.git
 ```
 
 ### Navegue até o diretório do projeto:
 
 ```
-cd assessment-frontend
+cd webjump
 ```
 
 ### Instale as dependências:
 
 ```
 npm install
-```
-
-### Inicie o JSON-Server:
-
-```
-npm run start:api
-```
-
-**Retorno CLI**
-
-```
-JSON Server started on PORT :8888
-Press CTRL-C to stop
-Watching db/db.json...
-
-(˶ᵔ ᵕ ᵔ˶)
-
-Index:
-http://localhost:8888/
-
-Static files:
-Serving ./public directory if it exists
-
-Endpoints:
-http://localhost:8888/categories
-http://localhost:8888/products
-
 ```
 
 ### Compile o projeto e rode o preview:
@@ -148,65 +124,33 @@ Port 5173 is in use, trying another one...
   ➜  press h + enter to show help
 ```
 
-## Como enviar seu teste
+## Supabase
 
-- Envie um email para [pessoas@webjump.com.br] com o link do seu repositório
-
-- Se o seu repositório for privado, solicite os emails das pessoas responsáveis para conceder acesso de leitura ao seu repositório.
-
-## API - Endpoints
-
-### Categorias
-
-http://localhost:8888/categories
-
-**Response**
+### Inicializando serviço
 
 ```
-[
-  {
-    "id": "1",
-    "name": "Camisetas",
-    "path": "camisetas"
-  },
-  {
-    "id": "2",
-    "name": "Calças",
-    "path": "calcas"
-  },
-  {
-    "id": "3",
-    "name": "Calçados",
-    "path": "calcados"
-  }
-]
-```
-
-### Produtos
-
-http://localhost:8888/products
-
-**Response**
+// Create a single supabase client for interacting with your database
+const supabase = createClient('https://xyzcompany.supabase.co', 'public-anon-key')
 
 ```
-[
-  {
-    "id": "1",
-    "sku": "sku-1",
-    "path": "camiseta-preta",
-    "name": "Camiseta Preta",
-    "image": "media/shirt-1.jpg",
-    "price": 59.9,
-    "categoryId": 1,
-    "filter": [
-      {
-        "color": "Preta"
-      }
-    ]
-  },
-  ...
-]
-```
+
+## Screenshots
+
+### Home
+
+[home-screenshot]
+
+### Listagem
+
+[categories-screenshot]
+
+### Contato
+
+[contact-screenshot]
+
+## Produção
+
+[live-project](https://adomoraes.github.io/webjump/)
 
 ## React
 
@@ -259,7 +203,7 @@ theme: {
 
 Eduardo Moraes <br /> [![LinkedIn][linkedin-shield]][linkedin-url] <br /> adomoraes@gmail.com
 
-Project Link: [https://orozimbo1982@bitbucket.org/orozimbo1982/assessment-frontend.git](https://orozimbo1982@bitbucket.org/orozimbo1982/assessment-frontend.git)
+Project Link: [https://github.com/adomoraes/webjump.git](https://github.com/adomoraes/webjump.git)
 
 <p align="right">(<a href="#readme-top">top</a>)</p>
 
@@ -268,3 +212,7 @@ Project Link: [https://orozimbo1982@bitbucket.org/orozimbo1982/assessment-fronte
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://www.linkedin.com/in/eduardo-moraes-939312143/
+[home-screenshot]: assets/home/
+[categories-screenshot]: assets/categories/
+[contact-screenshot]: assets/contato/
+[live-project]: https://adomoraes.github.io/webjump/
